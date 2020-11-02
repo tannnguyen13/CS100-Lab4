@@ -7,8 +7,8 @@
 
 class Pow : public Base {
 	private:
-		Base* op1 = new Base();
-		Base* op2 = new Base();
+		Base* op1 = new virtual Base();
+		Base* op2 = new virtual Base();
 	public:
 		Pow(Base* base1, Base* base2) : Base() { op1 = base1; op2 = base2; }
 		virtual double evaluate() { return pow((op1->evaluate()),(op2->evaluate()));}
