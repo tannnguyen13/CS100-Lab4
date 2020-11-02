@@ -6,8 +6,8 @@
 
 class Mult : public Base {
 	private:
-		Base* op1 = new Base();
-		Base* op2 = new Base();
+		Base* op1 = new virtual Base();
+		Base* op2 = new virtual Base();
 	public:
 		Mult(Base* base1, Base* base2) : Base() { op1 = base1; op2 = base2; }
 		virtual double evaluate() { return ((op1->evaluate()) * (op2->evaluate()));}
