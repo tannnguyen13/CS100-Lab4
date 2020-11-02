@@ -4,7 +4,7 @@
 #include "base.hpp"
 #include <string>
 
-Class Mult : public Base {
+class Mult : public Base {
 	Public :
 		Mult(Base* base1, Base* base2) : Base() { op1 = base1; op2 = base2; }
 		virtual double evaluate() { return ((op1->evaulate()) * (op2->evaluate()));}
