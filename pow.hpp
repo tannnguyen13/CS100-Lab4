@@ -6,7 +6,7 @@
 #include <math.h>
 
 class Pow : public Base {
-	Private:
+	private:
 		Base* op1 = new Base();
 		Base* op2 = new Base();
 	public:
