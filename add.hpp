@@ -6,8 +6,8 @@
 
 class Add : public Base {
 	Private:
-		Base* op1;
-		Base* op2;
+		Base* op1 = new Base();
+		Base* op2 = new Base();
 	Public :
 		Add(Base* base1, Base* base2) : Base() { op1 = base1; op2 = base2; }
 		virtual double evaluate() { return ((op1->evaluate()) + (op2->evaluate()));}
