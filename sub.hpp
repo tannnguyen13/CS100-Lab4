@@ -6,12 +6,15 @@
 
 class Sub : public Base {
 	private:
-		Base* op1 = new virtual Base();
-		Base* op2 = new virtual Base();
+		double value;
+		std::string expression;
 	public:
-		Sub(Base* base1, Base* base2) : Base() { op1 = base1; op2 = base2; }
-		virtual double evaluate() { return ((op1->evaluate()) - (op2->evaluate()));}
-		virtual std::string stringify() { return (op1->stringify() + " - " + op2->stringify());}
+		Sub(Base* base1, Base* base2) : Base() {
+			value = base1->evaluate() - base2->evaluate();
+			expression = base1->stringify() + " - " + base2->stringify();
+		}
+		virtual double evaluate() { return value;}
+		virtual std::string stringify() { return expression;}
 };
 
 #endif //__MULT_HPP__

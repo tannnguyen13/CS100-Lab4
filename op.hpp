@@ -3,14 +3,19 @@
 
 #include "base.hpp"
 #include <string>
+#include <sstream>
 
 class Op : public Base {
     public:
-        Op(double value) : Base() { opVal = value;}
+        Op(double value) : Base() { 
+		opVal = value;
+		number << std::fixed << std::setprecision(1) << value;
+	}
         virtual double evaluate() { return opVal; }
-        virtual std::string stringify() { return std::to_string(opVal); }
+        virtual std::string stringify() { return number.str(); }
    private:
 	double opVal;
+	std::stringstream number;
 };
 
 #endif //__OP_HPP__

@@ -2,29 +2,32 @@
 #define __ADD_TEST_HPP__
 
 #include "gtest/gtest.h"
-
+#include "base.hpp"
 #include "add.hpp"
+#include "op.hpp"
+#include "div.hpp"
+#include "mult.hpp"
 
 TEST(AddTest, AddStringifyNumbers) {
-    Add* test = new Add(Op(5), Op(7));
-    EXPECT_EQ(test->stringify(), "5 + 7");
+    Add* test = new Add(new Op(5), new Op(7));
+    EXPECT_EQ(test->stringify(), "5.0 + 7.0");
 }
 TEST(AddTest, AddStringifyOperator) {
-    Add* test = new Add(Div(Op(4), Op(3)), Sub(Op(9), Op(5)));
-    EXPECT_EQ(test->stringify(), "4 / 3 + 9 - 5");
+    Add* test = new Add(new Div(new Op(4), new Op(3)), new Sub(new Op(9), new Op(5)));
+    EXPECT_EQ(test->stringify(), "4.0 / 3.0 + 9.0 - 5.0");
 }
 TEST(AddTest, AddStringifyNumbersOp) {
-    Add* test = new Add(Op(5), Mult(Op(2), Op(2)));
-    EXPECT_EQ(test->stringify(), "6 + 2 * 2");
+    Add* test = new Add(new Op(5), new Mult(new Op(2), new Op(2)));
+    EXPECT_EQ(test->stringify(), "5.0 + 2.0 * 2.0");
 }
 
 TEST(AddTest, AddEvalNumbers) {
-    Add* test = new Add(Op(6), Op(2));
+    Add* test = new Add(new Op(6), new Op(2));
     EXPECT_EQ(test->evaluate(), 8);
 }
 TEST(AddTest, AddEvalOperator) {
-    Add* test = new Add(Add(1,5), Sub(3,1));
+    Add* test = new Add(new Add(new Op(1), new Op(5)), new Sub(new Op(3), new Op(1)));
     EXPECT_EQ(test->evaluate(), 8 );
 }
 
-
+#endif

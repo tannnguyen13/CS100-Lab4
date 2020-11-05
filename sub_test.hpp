@@ -2,28 +2,31 @@
 #define __SUB_TEST_HPP__
 
 #include "gtest/gtest.h"
-
+#include "add.hpp"
 #include "sub.hpp"
+#include "mult.hpp"
+#include "div.hpp"
+#include "pow.hpp"
 
 TEST(SubTest, SubStringifyNumbers) {
-    Sub* test = new Sub(Op(5), Op(7));
-    EXPECT_EQ(test->stringify(), "5 - 7");
+    Sub* test = new Sub(new Op(5), new Op(7));
+    EXPECT_EQ(test->stringify(), "5.0 - 7.0");
 }
 TEST(SubTest, SubStringifyOperator) {
-    Sub* test = new Sub(Div(Op(4), Op(3)), Add(Op(9), Op(5)));
-    EXPECT_EQ(test->stringify(), "4 / 3 - 9 + 5");
+    Sub* test = new Sub(new Div(new Op(4), new Op(3)), new Add(new Op(9), new Op(5)));
+    EXPECT_EQ(test->stringify(), "4.0 / 3.0 - 9.0 + 5.0");
 }
 TEST(SubTest, SubStringifyNumbersOp) {
-    Sub* test = new Sub(Op(5), Mult(Op(2), Op(2)));
-    EXPECT_EQ(test->stringify(), "5 - 2 * 2");
+    Sub* test = new Sub(new Op(5), new Mult(new Op(2), new Op(2)));
+    EXPECT_EQ(test->stringify(), "5.0 - 2.0 * 2.0");
 }
 
 TEST(SubTest, SubEvalNumbers) {
-    Sub* test = new Sub(Op(6), Op(2));
+    Sub* test = new Sub(new Op(6), new Op(2));
     EXPECT_EQ(test->evaluate(), 4);
 }
 TEST(SubTest, SubEvalOperator) {
-    Sub* test = new Sub(Add(1,5), Sub(3,1));
+    Sub* test = new Sub(new Add(new Op(1), new Op(5)), new Sub(new Op(3), new Op(1)));
     EXPECT_EQ(test->evaluate(), 4 );
 }
-
+#endif
